@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+<div id="transcr_output">
+  <table id="transcr_parallel_output"><tbody>
+    <tbody>
+<% lines.each do |line| %>
+      <tr class="sentence">
+        <td class="orig">
+  <% line["orig"]["en-uk"].each_with_index do |word,indx| %>
+          <div class="inline_unit_orig">
+            <span class="orig"><%= word + "&nbsp;".html_safe %></span>
+          </div>
+  <% end %>
+          <div class="clear_both"> </div>
+  <% line["orig"]["ipa"].each_with_index do |ipaword,indx| %>
+          <div class="inline_unit_ipa">
+             <ruby class="base">
+               <rb><span class="ipa"><%= ipaword + "&nbsp;".html_safe %></span></rb>
+             <rt>
+     <% line["orig"]["ipasylflat"][0][indx].each do |syllable| %>
+                 <ruby><rbc><rb class="onset"><%= syllable[:onset] %></rb><ruby><rb class="nucleus"><span class="vowel"><%= syllable[:nucleus] %></span></rb><rt class="<%= syllable[:stress] %>">●</rt></ruby><rb class="coda"><%= syllable[:coda] %></rb></rbc>
+                 </ruby>
+     <% end %>
+          </rt></ruby>
+        </div>
+  <% end %>
+          <div class="clear_both"> </div>
+        </td>
+        <td>
+          <div class="inline_unit_translation">
+            <div class="inline_orig"><%= line["translation"]%></div>
+          </div>
+          <div class="clear_both"> </div>
+        </td>
+      </tr>
+<% end %>
+</body>
+</html>

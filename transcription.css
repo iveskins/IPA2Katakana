@@ -1,0 +1,270 @@
+hr {
+	margin: 1em 0 0.7em;
+}
+
+#multi_ipa_notes {
+	display: none;
+	position: absolute;
+	padding: 4px 12px;
+	color: #444;
+	background: #f7f7f7;
+	border: 1px solid silver;
+	font: 1em Helvetica, Gadget, sans-serif;
+	text-align: left;
+	z-index: 999;
+}
+
+#transcription_form #options_div {
+	text-align: left;
+	padding-right: 15px;
+	font-size: small;
+	white-space: nowrap;
+}
+
+#transcr_output {
+	padding: 1em 0;
+	font-family: Helvetica, Gadget, sans-serif;
+}
+
+#transcr_parallel_output td {
+	padding: 3em 0 .5em;
+	font-weight: inherit;
+}
+
+#transcr_parallel_output tr {
+	padding: 1 0 .5em;
+	font-weight: inherit;
+}
+
+#transcr_parallel_output .orig {
+	color: gray;
+}
+
+.nontranscriptable {
+	font-weight: bold;
+	color: gray;
+}
+
+.transcription_missing {
+	color: red;
+}
+
+.transcribed_word {
+	white-space: nowrap;
+}
+.transcribed_word_2 {
+	line-height: 4em;
+}
+
+
+.clear_both {
+	clear: both;
+	height: 0;
+}
+
+.inline_unit_orig {
+	float: left;
+	 margin: 0 0 1em 0;
+	/*height: 5.1em;*/
+}
+.inline_unit_ipa {
+	float: left;
+	 margin: 0 0 1em 0;
+	/*height: 5.1em;*/
+}
+.inline_unit_translation {
+	float: left;
+	/* margin: 0 0 0.5em 0; */
+	/*height: 5.1em;*/
+}
+
+
+
+.inline_orig {
+	color: gray;
+	/*height: 1.1em;*/
+}
+
+.fullwidth {
+	width: 100%;
+}
+
+/* Transcription */
+.transcription_options {
+    margin: 0.4em 0 0;
+    width: 36%;
+    padding: 0;
+    float: left;
+}
+
+.tr_options_narrow {
+    width: 28%;
+}
+
+.transcription_options input[type="text"] {
+	width: 0.6em;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.transcription_options #preBracket {
+	text-align: right;
+}
+
+/* App Store badge */
+.badge_wrapper {
+	display: inline;
+	float: right;
+	margin-left: 1.625em;
+}
+
+.badge {
+    padding: 5px 10px 0 0;
+    text-align: right;
+}
+
+.transcribe_btn_gap {
+    margin-top: 1.4em;
+}
+
+.transcribe_btn_gap_ru {
+    margin-top: 2.9em;
+}
+
+@media (max-width: 730px) {
+    .transcription_options {
+        float: none;
+        width: auto;
+    }
+
+    .badge {
+        padding: 5px 0 0 0;
+        text-align: left;
+    }
+
+    .transcribe_btn_gap, .transcribe_btn_gap_ru {
+        margin-top: 1em;
+    }
+}
+
+.textarea_wrapper {
+    position: relative;
+    width: 98%;
+}
+
+#text_to_transcribe {
+    width: 100%;
+}
+
+textarea:invalid + input[type="button"] {
+    display: none;
+}
+
+input[type="button"]
+{
+    background-image: url('/wp-content/plugins/transcription/clear.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+    height: 22px;
+    width: 22px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    top: -22px;
+    right: -10px;
+}
+
+#adsense_container_1 {
+	text-align: center;
+	margin: 20px 0;
+}
+
+#adsense_container_2 {
+	margin: 0 auto;
+}
+
+#transcr_social {
+	margin: 0;
+}
+#transcr_social li {
+	list-style: none;
+	float: left;
+	padding: 0 12px 6px 0;
+}
+#transcr_social #vk {
+	width: 167px;
+}
+#transcr_social #fb {
+	width: 150px;
+}
+#transcr_social #twit {
+	width: 115px;
+}
+#transcr_social #g {
+	width: 100px;
+}
+
+/* fix fo FB button alignment  */
+.fb-like span {
+    vertical-align: top !important;
+}
+
+
+td table tr td {
+    padding-top: 50px !important;
+  }
+
+tr table tr  {
+	    padding-top: 50px !important;
+	  }
+
+ruby {
+	  /*font-size: 72pt;*/
+  display: inline-block;
+  /*line-height: 1em;*/
+  /*position: relative;*/
+	ruby-align:center;
+}
+ruby.base {
+	  padding-inline-end: 0.5em;
+}
+rt {
+	font-size: .8em;
+  /*position: absolute;*/
+  /*display: block;*/
+  /*line-height: 1.3em;*/
+  /*top: 0;*/
+}
+rt.primary{
+  font-size: 1.4em;
+  text-shadow: 2px 2px #959595;
+}
+rt.second{
+  font-size: 1.1em;
+  text-shadow: 2px 2px #959595;
+}
+rt.un{
+	  text-shadow: 2px 2px #959595;
+  /*font-size: 1em;*/
+}
+
+ruby rt.1primary{
+  font-size: 1em;
+}
+rt.1second{
+  font-size: 1em;
+}
+rt.1un{
+  font-size: 1em;
+}*/
+
+
+rb {
+  display: inline-block;
+  padding-top: 0.2em;
+}
+
+span.vowel {
+	/*writing-mode: vertical-rl;*/
+	}
