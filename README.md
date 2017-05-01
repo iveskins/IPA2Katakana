@@ -10,10 +10,16 @@ replace the en.yml file of that Gems config e.g (/var/lib/gems/2.3.0/gems/syllab
 with the modified version in this repo
 
 make a text file with 
+
 one line english
+
 一つ日本　(and one japanes )
 
 e.g sop.txt
+
 then run the ruby yamlbuilder.rb (yourfile.txt)
+
 to get a yaml template
+
 ruby english2japvowelv50.rb (your.yaml) (output.html)
+
