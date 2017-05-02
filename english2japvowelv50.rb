@@ -5,6 +5,7 @@ require 'active_support/core_ext'
 require 'syllabify'
 require 'erb'
 require 'yaml'
+require 'shellwords'
 infile = File.open(ARGV[0])
 data = YAML.load_file infile
 
@@ -12,32 +13,32 @@ data = YAML.load_file infile
 
 lines = data["Text"] #array
 lines.each do |line|
-  string = line["orig"]["ipa"]
-  transcr_output = %x(speak-ng -q --ipa=3 --sep=͡  "#{string}").strip.split(" ")
+  string = line[0]["orig"]["ipa"]
+  transcr_output = %x(speak-ng -q --ipa=3 --sep=͡ #{Shellwords.escape(string)}).strip.split(" ")
   # puts transcr_output
-  line["orig"]["ipa"] = transcr_output
-  line["orig"]["jipa"] = transcr_output
-  line["orig"]["ipasyl"] = transcr_output
+  line[0]["orig"]["ipa"] = transcr_output
+  line[0]["orig"]["jipa"] = transcr_output
+  line[0]["orig"]["ipasyl"] = transcr_output
 end
 lines.each do |line|
-  string = line["orig"]["en-uk"]
+  string = line[0]["orig"]["en-uk"]
   split_output = string.strip.split(/\s|\.(?=\S)/) # match white-space and .'s not followed by white-space  eg "St.John" -> "st", "John" because espeak does this too
   # puts split_output
-  line["orig"]["en-uk"] = split_output
+  line[0]["orig"]["en-uk"] = split_output
 end
 lines.each do |line| # one line from file
-  string = line["orig"]["ipasyl"] #array of words
+  string = line[0]["orig"]["ipasyl"] #array of words
   syllablwords = []
   string.each do |word|  #for evey word in the line
     trans = CodyRobbins::Syllabify.new(:en, word)  #make syllables objects for that word
     syllablwords << trans
   end
-  line["orig"]["ipasyl"] = syllablwords
-  line["orig"]["ipasylflat"] = []
+  line[0]["orig"]["ipasyl"] = syllablwords
+  line[0]["orig"]["ipasylflat"] = []
 end
 # make plain array from CodyRobbins::Syllabify objects .. I could use some BaskinRobbins::ice-cream.now
 lines.each do |line| # one line from file
-    words = line["orig"]["ipasyl"] #array of syllable arrays
+    words = line[0]["orig"]["ipasyl"] #array of syllable arrays
      lineassylls = []
      words.each do |word|  #for evey word in the line
       wordsassylls = []
@@ -48,7 +49,7 @@ lines.each do |line| # one line from file
           end
           lineassylls << wordsassylls
      end
-     line["orig"]["ipasylflat"] << lineassylls
+     line[0]["orig"]["ipasylflat"] << lineassylls
 end
 #replace the vowels with katakana
 
@@ -101,7 +102,7 @@ nuclei = {
 }
 #replace the vowels with special sauce katakana
 lines.each do |line| # one line from file
-  wordsassylls = line["orig"]["ipasylflat"] #array of words and sub array of syllables
+  wordsassylls = line[0]["orig"]["ipasylflat"] #array of words and sub array of syllables
   wordsassylls.map {|words| words.map{|syllables| syllables.map{|syllable| syllable[:nucleus] = syllable[:nucleus].gsub(re, nuclei)}}}
 end
 
@@ -112,11 +113,11 @@ consonant  = {
   "j"        => 'y'
 }
 lines.each do |line| # one line from file
-  wordsassylls = line["orig"]["ipasylflat"] #array of words and sub array of syllables
+  wordsassylls = line[0]["orig"]["ipasylflat"] #array of words and sub array of syllables
   wordsassylls.map {|words| words.map{|syllables| syllables.map{|syllable| unless syllable[:onset].nil?; unless syllable[:onset].empty?; syllable[:onset] = syllable[:onset].gsub(reconsonant, consonant) ;end ; end }}} # replace the ipa j with an easy to read y ect in the onset(part of the syllable before the nucleus)
 end
 lines.each do |line| # one line from file
-  wordsassylls = line["orig"]["ipasylflat"] #array of words and sub array of syllables
+  wordsassylls = line[0]["orig"]["ipasylflat"] #array of words and sub array of syllables
   wordsassylls.map {|words| words.map{|syllables| syllables.map{|syllable| unless syllable[:coda].nil?; unless syllable[:coda].empty?; syllable[:coda] = syllable[:coda].gsub(reconsonant, consonant) ;end ; end }}} # replace the ipa j with an easy to read y ect in the coda(part of the syllable after the nucleus)
 end
 
